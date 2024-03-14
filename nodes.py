@@ -56,7 +56,7 @@ class vector_sculptor_node:
     def exec(self, clip, text, sculptor_threshold, sculptor_subtract):
         ignored_token_ids = [49406, 49407, 0]
         initial_tokens = clip.tokenize(text)
-        if sculptor_threshold < 1:
+        if sculptor_threshold < 1 or text == "":
             total_found = 0
             total_replaced = 0
             total_candidates = 0
