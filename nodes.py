@@ -18,7 +18,7 @@ def refine_token_weight(token_id, all_weights, sculptor_threshold, subtract_diff
     concurrent_weights_ids, scores = get_closest_token_cosine_similarities(initial_weight,all_weights,True)
     concurrent_weights_ids, scores = concurrent_weights_ids[1:], scores[1:]
 
-    s = [score for p, score in enumerate(scores) if p < 500 and score > sculptor_threshold][:500]
+    s = [score for p, score in enumerate(scores) if p < 100 and score > sculptor_threshold][:100]
     if len(s) <= 1: return initial_weight.cpu(), 0
     scores = s
     concurrent_weights_ids = concurrent_weights_ids[:len(scores)]
@@ -28,7 +28,7 @@ def refine_token_weight(token_id, all_weights, sculptor_threshold, subtract_diff
     initial_weight = initial_weight / torch.norm(initial_weight) * len(s) / sum_of_scores
 
     for x in range(len(concurrent_weights)):
-        initial_weight += concurrent_weights[x] * (2 if not subtract_difference else 1)
+        initial_weight += concurrent_weights[x] * (2 if not subtract_difference else 0.5)
     if subtract_difference:
         initial_weight = initial_weight_copy * 2 - initial_weight
     initial_weight = initial_weight * pre_mag / torch.norm(initial_weight)
@@ -44,7 +44,7 @@ class vector_sculptor_node:
             "required": {
                 "clip": ("CLIP", ),
                 "text": ("STRING", {"multiline": True}),
-                "sculptor_threshold": ("FLOAT", {"default": 0.6, "min": 0, "max": 1, "step": 0.05}),
+                "sculptor_threshold": ("FLOAT", {"default": 0.55, "min": 0.5, "max": 1, "step": 0.05}),
                 "sculptor_subtract" : ("BOOLEAN", {"default": False}),
             }
         }
