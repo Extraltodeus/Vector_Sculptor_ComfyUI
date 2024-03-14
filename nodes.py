@@ -28,7 +28,7 @@ def refine_token_weight(token_id, all_weights, sculptor_threshold, subtract_diff
     initial_weight = initial_weight / torch.norm(initial_weight) * len(s) / sum_of_scores
 
     for x in range(len(concurrent_weights)):
-        initial_weight += concurrent_weights[x] * (2 if not subtract_difference else 0.5)
+        initial_weight += concurrent_weights[x] * 2
     if subtract_difference:
         initial_weight = initial_weight_copy * 2 - initial_weight
     initial_weight = initial_weight * pre_mag / torch.norm(initial_weight)
