@@ -65,7 +65,7 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
     final_score = get_single_cosine_score(initial_weight,concurrent_weights) * sculptor_multiplier
 
     if sculptor_method == "backward":
-        initial_weight = initial_weight + concurrent_weights * final_score * 100
+        initial_weight = initial_weight + concurrent_weights * final_score * 10
     elif sculptor_method == "forward":
         initial_weight = initial_weight - concurrent_weights * final_score
         
