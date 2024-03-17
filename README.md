@@ -46,7 +46,7 @@ Since we are working with vectors, doing weighted averages might be the reason w
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/89a6d968-717c-492e-a9b1-b360e54d1504)
 
-With an average we're losing magnitude.
+With an average we're losing ~alti~ magnitude.
 
 ## "Conditioning normalize magnitude to empty:
 
