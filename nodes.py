@@ -219,10 +219,10 @@ class average_keep_mag_node:
         for x in range(min(len(cond1),len(cond2))):
             min_dim = min(cond1[x][0].shape[1],cond2[x][0].shape[1])
             if cond1[x][0].shape[2] == 2048:
-                cond1[x][0][:,:min_dim,:768] = average_and_keep_mag(cond1[x][0][:,:min_dim,:768], cond2[x][0][:,:min_dim,:768], conditioning_to_strength)
-                cond1[x][0][:,:min_dim,768:] = average_and_keep_mag(cond1[x][0][:,:min_dim,768:], cond2[x][0][:,:min_dim,768:], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,:768] = slerp(cond1[x][0][:,:min_dim,:768], cond2[x][0][:,:min_dim,:768], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,768:] = slerp(cond1[x][0][:,:min_dim,768:], cond2[x][0][:,:min_dim,768:], conditioning_to_strength)
             else:
-                cond1[x][0][:,:min_dim,...] = average_and_keep_mag(cond1[x][0][:,:min_dim,...], cond2[x][0][:,:min_dim,...], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,...] = slerp(cond1[x][0][:,:min_dim,...], cond2[x][0][:,:min_dim,...], conditioning_to_strength)
             cond1 = add_to_first_if_shorter(cond1,cond2,x)
         return (cond1,)
 
