@@ -70,3 +70,8 @@ If using SDXL the values are worked separately for clip_g and clip_l
 ## Note:
 
 I make these nodes to try to understand things deeper. My maths can sometimes be wrong sometimes. Everything I do is self-taught with an overly top-to-bottom approach.
+
+Also kittens seems immune to this transformation and inherits little suits before turning into AI chaos.
+
+![kit](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/34b4f33d-1272-471c-9fc0-4dd8c0358526)
+
