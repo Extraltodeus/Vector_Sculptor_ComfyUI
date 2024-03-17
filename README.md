@@ -28,11 +28,6 @@ Since we are thinking with angles, doing weighted averages might be the reason w
 
 With an average we're losing magnitude.
 
-As far as my testing went:
-
-- slerping prompts describing a firy hell and a sad woman near a rainy window at 50% gave me a woman in flaming cathedral with big windows.
-- 50/50 average gave me a sad woman near a window with a sligthly more red and darker tone.
-
 ## "Conditioning normalize magnitude to empty:
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/57b9bbc4-7581-4fd8-bce3-b1c0d342a42b)
