@@ -22,7 +22,7 @@ Does what I described above.
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/36830dc8-47bc-4cd5-abd9-dc9b799fa70f)
 
-Since we are thinking with angles, doing weighted averages might be the reason why things might feel "dilute" sometimes:
+Since we are working with vectors, doing weighted averages might be the reason why things might feel "dilute" sometimes:
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/89a6d968-717c-492e-a9b1-b360e54d1504)
 
