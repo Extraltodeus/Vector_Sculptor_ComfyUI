@@ -69,6 +69,35 @@ If using SDXL the values are worked separately for clip_g and clip_l
 
 ![03184UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/cdc50ef9-d427-4cd1-b945-33f7f91eef4b)
 
+# Example with SDXL:
+
+prompt is: "dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
+
+Default:
+
+![03371UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0bb67f1f-f8fb-4725-b32e-134f7061b4ae)
+
+<sub>_Bleh..._</sub>
+
+The settings are written in the images:
+
+![03376UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/7a97c9ee-0742-421b-8a19-62fc6e2e490a)
+![03375UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/3e23f22a-c599-42f2-88b1-4784f3810a19)
+![03374UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e5ed50d1-0061-43a8-a089-1aa56dc6b7d3)
+![03373UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/39f6e4ae-e857-4397-8670-65d9dedf34a9)
+![03377UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/dfa3932f-f422-433f-81a9-890c9aaa736a)
+
+![03396UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/72ffaa6d-ed91-4dd5-855c-6dbe34bcaa5f)
+![03394UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/ee7d5ee5-80f2-4f2f-bacc-5364b7917d06)
+![03393UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/41bdfaab-9482-4376-a8f5-2a0a4da109d0)
+![03391UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/659833e6-55a1-42c2-9d26-af3df0abbf99)
+![03390UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/4e9d25a8-1f5c-48dc-8ce6-bdb98c5b6ef3)
+
+Maximum absolute didn't do well this time:
+
+![03397UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0d650597-5b3d-461e-8cf6-b6c60b021606)
+
+
 
 ### intensity at 10 becomes total nonsense whatever the direction:
 
