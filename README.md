@@ -1,6 +1,6 @@
-The main node gathers similar pre-conditioning vectors for as long as the cosine similarity score diminishes. If it climbs back it stops. This allows to set a relative direction to similar concepts.
+The main node makes your conditioning go towards similar concepts so to enrich your composition or further away so to make it more precise.
 
-Or in human language: It makes your conditioning go towards similar concepts so to enrich your composition or further away so to make it more precise.
+It gathers similar pre-cond vectors for as long as the cosine similarity score diminishes. If it climbs back it stops. This allows to set a relative direction to similar concepts.
 
 The nodes:
 
