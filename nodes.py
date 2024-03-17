@@ -65,9 +65,9 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
     final_score = get_single_cosine_score(initial_weight,concurrent_weights) * sculptor_multiplier
 
     if sculptor_method == "backward":
-        initial_weight = initial_weight * (1 - final_score) + concurrent_weights * final_score
+        initial_weight = initial_weight + concurrent_weights * final_score
     elif sculptor_method == "forward":
-        initial_weight = initial_weight * 1 + concurrent_weights * (1 - final_score)
+        initial_weight = initial_weight - concurrent_weights * final_score
         
     initial_weight *= pre_mag / torch.norm(initial_weight)
     return initial_weight.cpu(), len(s)
@@ -219,10 +219,10 @@ class average_keep_mag_node:
         for x in range(min(len(cond1),len(cond2))):
             min_dim = min(cond1[x][0].shape[1],cond2[x][0].shape[1])
             if cond1[x][0].shape[2] == 2048:
-                cond1[x][0][:,:min_dim,:768] = slerp(cond1[x][0][:,:min_dim,:768], cond2[x][0][:,:min_dim,:768], conditioning_to_strength)
-                cond1[x][0][:,:min_dim,768:] = slerp(cond1[x][0][:,:min_dim,768:], cond2[x][0][:,:min_dim,768:], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,:768] = average_and_keep_mag(cond1[x][0][:,:min_dim,:768], cond2[x][0][:,:min_dim,:768], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,768:] = average_and_keep_mag(cond1[x][0][:,:min_dim,768:], cond2[x][0][:,:min_dim,768:], conditioning_to_strength)
             else:
-                cond1[x][0][:,:min_dim,...] = slerp(cond1[x][0][:,:min_dim,...], cond2[x][0][:,:min_dim,...], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,...] = average_and_keep_mag(cond1[x][0][:,:min_dim,...], cond2[x][0][:,:min_dim,...], conditioning_to_strength)
             cond1 = add_to_first_if_shorter(cond1,cond2,x)
         return (cond1,)
 
