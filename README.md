@@ -13,9 +13,10 @@ The nodes:
 Does what I described above.
 
 - **Sculptor Intensity**: How strong the effect will be. If the direction is not reversed I would say that up to 3 you will keep the overall meaning of your prompt. If reversed then don't go above 1~2.5 or face (enjoy?) randomness.
-- **Sculptor reversed**:
-  - **off**: goes towards the nearest vectors. This will make your generated images different in a generally good way. It can also reinforce the meaning of some words or make the images more colorful. Recommended intensity is above 1.
-  - **on**: goes away from these nearest vectors. This might make the images sharper somehow or more precise with a low intensity but tends to have a more random effect in general. Recommended intensity is 1 and below.
+- **Sculptor method**:
+  - **forward**: goes towards the nearest vectors. This will make your generated images different in a generally good way. It can also reinforce the meaning of some words or make the images more colorful. Recommended intensity is above 1.
+  - **backward**: goes away from these nearest vectors. This might make the images sharper somehow or more precise with a low intensity but tends to have a more random effect in general. Recommended intensity is 1 and below.
+  - **maximum_absolute**: Normalize the vectors and selects the values that are the furthest from 0. The intensity has no effect here besides disabling if set at 0. This tends to make the compositions more complex on simple subjects and more chaotic on complex prompts. Can be beneficial or not depending on what. It's mostly for fun.
 - **Token normalization**: reworks the magnitude of each vectors. I recommand either "none" which leaves things by default or "mean" so to set every token's importance to their overall mean value. "set at 1" will set them all at 1 and I have no idea if this is a good idea. "mean of all tokens" will take the mean value of EVERY vectors within the pre-cond weights and is probably a bad idea but also why not.
 
 If the intensity is set at 0 the token's normalization is still into effect. Setting it at 0 and selecting "none" will return a default Comfy conditioning.
