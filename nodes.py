@@ -1,5 +1,7 @@
 import torch
 import comfy.model_management as model_management
+from copy import deepcopy
+
 
 def get_closest_token_cosine_similarities(single_weight, all_weights, return_scores=False):
     cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
@@ -11,28 +13,105 @@ def get_closest_token_cosine_similarities(single_weight, all_weights, return_sco
     scores_list = sorted_scores.tolist()
     return best_id_list, scores_list
 
-def refine_token_weight(token_id, all_weights, sculptor_threshold, subtract_difference):
+def get_single_cosine_score(single_weight,concurrent_weight):
+    cos = torch.nn.CosineSimilarity(dim=1, eps=1e-6)
+    score = cos(concurrent_weight.unsqueeze(0), single_weight.unsqueeze(0)).item()
+    return score
+
+def refine_token_weight(token_id, all_weights, subtract_difference, sculptor_multiplier):
     initial_weight = all_weights[token_id]
-    initial_weight_copy = torch.clone(initial_weight)
-    pre_mag = torch.norm(initial_weight_copy)
+    pre_mag = torch.norm(initial_weight)
     concurrent_weights_ids, scores = get_closest_token_cosine_similarities(initial_weight,all_weights,True)
     concurrent_weights_ids, scores = concurrent_weights_ids[1:], scores[1:]
+    
+    previous_cos_score = 0
+    cos_score = 1
+    iter_num = 0
+    s = []
+    tmp_weights = []
+    ini_w = torch.clone(initial_weight)
 
-    s = [score for p, score in enumerate(scores) if p < 100 and score > sculptor_threshold][:100]
+    while previous_cos_score < cos_score:
+        if iter_num > 0:
+            previous_cos_score = cos_score
+        s.append(scores[iter_num])
+        current_weight = all_weights[concurrent_weights_ids[iter_num]]
+        tmp_weights.append(current_weight)
+        vec_sum = torch.sum(torch.stack(tmp_weights),dim=0)
+        cos_score = get_single_cosine_score(ini_w, vec_sum)
+        iter_num += 1
+    del s[-1]
+    del tmp_weights[-1]
+
     if len(s) <= 1: return initial_weight.cpu(), 0
-    scores = s
-    concurrent_weights_ids = concurrent_weights_ids[:len(scores)]
 
-    sum_of_scores = sum(scores)
-    concurrent_weights = [all_weights[w] / torch.norm(all_weights[w]) for i, w in enumerate(concurrent_weights_ids)]
-    initial_weight = initial_weight / torch.norm(initial_weight) * len(s) / sum_of_scores
+    concurrent_weights = torch.sum(torch.stack([t * s[i]**2 for i, t in enumerate(tmp_weights)]), dim=0)
+    final_score = get_single_cosine_score(initial_weight,concurrent_weights) * sculptor_multiplier
 
-    for x in range(len(concurrent_weights)):
-        initial_weight += concurrent_weights[x] * 2
     if subtract_difference:
-        initial_weight = initial_weight_copy * 2 - initial_weight
-    initial_weight = initial_weight * pre_mag / torch.norm(initial_weight)
-    return initial_weight.cpu(), len(scores)
+        initial_weight = initial_weight * (1 - final_score) + concurrent_weights * final_score
+    else:
+        initial_weight = initial_weight * 1 + concurrent_weights * (1 - final_score)
+        
+    initial_weight *= pre_mag / torch.norm(initial_weight)
+    return initial_weight.cpu(), len(s)
+
+def vector_sculptor_tokens(clip, text, subtract, token_normalization, sculptor_multiplier):
+    ignored_token_ids = [49406, 49407, 0]
+    initial_tokens = clip.tokenize(text)
+    total_found = 0
+    total_replaced = 0
+    total_candidates = 0
+    
+    for k in initial_tokens:
+        mean_mag = 0
+        mean_mag_count = 0
+        to_mean_coords = []
+        clip_model = getattr(clip.cond_stage_model, f"clip_{k}", None)
+        all_weights = torch.clone(clip_model.transformer.text_model.embeddings.token_embedding.weight).to(device=model_management.get_torch_device())
+        if token_normalization == "mean of all tokens":
+            all_mags = torch.stack([torch.norm(t) for t in all_weights])
+            mean_mag_all_weights = torch.mean(all_mags, dim=0).item()
+        for x in range(len(initial_tokens[k])):
+            for y in range(len(initial_tokens[k][x])):
+                token_id, attn_weight = initial_tokens[k][x][y]
+                if token_id not in ignored_token_ids and sculptor_multiplier > 0:
+                    total_candidates += 1
+                    new_vector, n_found = refine_token_weight(token_id,all_weights, subtract, sculptor_multiplier)
+                    if n_found > 0:
+                        total_found += n_found
+                        total_replaced += 1
+                else:
+                    new_vector = all_weights[token_id]
+                # if y not in [0,76] and token_normalization != "none":
+                if token_normalization != "none":
+                    if token_normalization == "mean" or token_normalization == "mean * attention":
+                        mean_mag += torch.norm(new_vector).item()
+                        mean_mag_count += 1
+                        to_mean_coords.append([x,y])
+                    elif token_normalization == "set at 1":
+                        new_vector /= torch.norm(new_vector)
+                    elif token_normalization == "default * attention":
+                        new_vector *= attn_weight
+                    elif token_normalization == "set at attention":
+                        new_vector /= torch.norm(new_vector) * attn_weight
+                    elif token_normalization == "mean of all tokens":
+                        new_vector /= torch.norm(new_vector) * mean_mag_all_weights
+                initial_tokens[k][x][y] = (new_vector, attn_weight)
+        if (token_normalization == "mean" or token_normalization == "mean * attention") and mean_mag_count > 0:
+            mean_mag /= mean_mag_count
+            for x, y in to_mean_coords:
+                token_weight, attn_weight = initial_tokens[k][x][y]
+                if token_normalization == "mean * attention":
+                    twm = attn_weight
+                else:
+                    twm = 1
+                token_weight = token_weight / torch.norm(token_weight) * mean_mag * twm
+                initial_tokens[k][x][y] = (token_weight, attn_weight)
+        del all_weights
+    if total_candidates > 0:
+        print(f"total_found: {total_found} / total_replaced: {total_replaced} / total_candidates: {total_candidates} / candidate proportion replaced: {round(100*total_replaced/total_candidates,2)}%")
+    return initial_tokens
 
 class vector_sculptor_node:
     def __init__(self):
@@ -44,8 +123,73 @@ class vector_sculptor_node:
             "required": {
                 "clip": ("CLIP", ),
                 "text": ("STRING", {"multiline": True}),
-                "sculptor_threshold": ("FLOAT", {"default": 0.55, "min": 0.5, "max": 1, "step": 0.05}),
-                "sculptor_subtract" : ("BOOLEAN", {"default": False}),
+                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 10, "step": 0.1}),
+                "sculptor_reverse" : ("BOOLEAN", {"default": False}),
+                "token_normalization": (["none", "mean", "default * attention", "mean * attention", "set at 1", "set at attention", "mean of all tokens"],),
+            }
+        }
+
+    FUNCTION = "exec"
+    RETURN_TYPES = ("CONDITIONING","STRING",)
+    RETURN_NAMES = ("Conditioning","Parameters",)
+    CATEGORY = "conditioning"
+
+    def exec(self, clip, text, sculptor_intensity, sculptor_reverse, token_normalization):
+        sculptor_tokens = vector_sculptor_tokens(clip, text, sculptor_reverse, token_normalization, sculptor_intensity)
+        cond, pooled = clip.encode_from_tokens(sculptor_tokens, return_pooled=True)
+        conditioning = [[cond, {"pooled_output": pooled}]]
+        if sculptor_intensity == 0 and token_normalization == "none":
+            parameters_as_string = "Disabled"
+        else:
+            parameters_as_string = f"Intensity: {sculptor_intensity}\nReversed: {sculptor_reverse}\nNormalization: {token_normalization}"
+        return (conditioning,parameters_as_string,)
+
+def add_to_first_if_shorter(conditioning1,conditioning2,x=0):
+    min_dim = min(conditioning1[x][0].shape[1],conditioning2[x][0].shape[1])
+    if conditioning2[x][0].shape[1]>conditioning1[x][0].shape[1]:
+        conditioning2[x][0][:,:min_dim,...] = conditioning1[x][0][:,:min_dim,...]
+        conditioning1 = conditioning2
+    return conditioning1
+
+# cheap slerp / I will bet an eternity doing regex that this is the dark souls 2 camera direction formula
+def average_and_keep_mag(v1,v2,p1):
+    m1 = torch.norm(v1)
+    m2 = torch.norm(v2)
+    v0 = v1 * p1 + v2 * (1 - p1)
+    v0 = v0 / torch.norm(v0) * (m1 * p1 + m2 * (1 - p1))
+    return v0
+
+# from  https://discuss.pytorch.org/t/help-regarding-slerp-function-for-generative-model-sampling/32475
+def slerp(high, low, val):
+    dims = low.shape
+
+    #flatten to batches
+    low = low.reshape(dims[0], -1)
+    high = high.reshape(dims[0], -1)
+
+    low_norm = low/torch.norm(low, dim=1, keepdim=True)
+    high_norm = high/torch.norm(high, dim=1, keepdim=True)
+
+    # in case we divide by zero
+    low_norm[low_norm != low_norm] = 0.0
+    high_norm[high_norm != high_norm] = 0.0
+
+    omega = torch.acos((low_norm*high_norm).sum(1))
+    so = torch.sin(omega)
+    res = (torch.sin((1.0-val)*omega)/so).unsqueeze(1)*low + (torch.sin(val*omega)/so).unsqueeze(1) * high
+    return res.reshape(dims)
+    
+class average_keep_mag_node:
+    def __init__(self):
+        pass
+    
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "conditioning_to": ("CONDITIONING",),
+                "conditioning_from": ("CONDITIONING",),
+                "conditioning_to_strength": ("FLOAT", {"default": 0.5, "min": 0, "max": 1, "step": 0.01}),
             }
         }
 
@@ -53,34 +197,55 @@ class vector_sculptor_node:
     RETURN_TYPES = ("CONDITIONING",)
     CATEGORY = "conditioning"
 
-    def exec(self, clip, text, sculptor_threshold, sculptor_subtract):
-        ignored_token_ids = [49406, 49407, 0]
-        initial_tokens = clip.tokenize(text)
-        if sculptor_threshold < 1 or text == "":
-            total_found = 0
-            total_replaced = 0
-            total_candidates = 0
-            for k in initial_tokens:
-                clip_model = getattr(clip.cond_stage_model, f"clip_{k}", None)
-                all_weights = torch.clone(clip_model.transformer.text_model.embeddings.token_embedding.weight).to(device=model_management.get_torch_device())
-                for x in range(len(initial_tokens[k])):
-                    for y in range(len(initial_tokens[k][x])):
-                        token_id, attn_weight = initial_tokens[k][x][y]
-                        if token_id not in ignored_token_ids:
-                            total_candidates += 1
-                            new_vector, n_found = refine_token_weight(token_id, all_weights, sculptor_threshold, sculptor_subtract)
-                            initial_tokens[k][x][y] = (new_vector, attn_weight)
-                            if n_found > 0:
-                                total_found += n_found
-                                total_replaced += 1
-                        else:
-                            initial_tokens[k][x][y] = (all_weights[token_id], attn_weight)
-                del all_weights
-            print(f"total_found: {total_found} / total_replaced: {total_replaced} / total_candidates: {total_candidates} / candidate proportion replaced: {round(100 * total_replaced / total_candidates, 2)}%")
-        cond, pooled = clip.encode_from_tokens(initial_tokens, return_pooled=True)
-        conditioning = [[cond, {"pooled_output": pooled}]]
-        return (conditioning,)
+    def exec(self, conditioning_to, conditioning_from,conditioning_to_strength):
+        cond1 = deepcopy(conditioning_to)
+        cond2 = deepcopy(conditioning_from)
+        for x in range(min(len(cond1),len(cond2))):
+            min_dim = min(cond1[x][0].shape[1],cond2[x][0].shape[1])
+            if cond1[x][0].shape[2] == 2048:
+                cond1[x][0][:,:min_dim,:768] = slerp(cond1[x][0][:,:min_dim,:768], cond2[x][0][:,:min_dim,:768], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,768:] = slerp(cond1[x][0][:,:min_dim,768:], cond2[x][0][:,:min_dim,768:], conditioning_to_strength)
+            else:
+                cond1[x][0][:,:min_dim,...] = slerp(cond1[x][0][:,:min_dim,...], cond2[x][0][:,:min_dim,...], conditioning_to_strength)
+            cond1 = add_to_first_if_shorter(cond1,cond2,x)
+        return (cond1,)
 
+class norm_mag_node:
+    def __init__(self):
+        pass
+    
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "conditioning": ("CONDITIONING",),
+                "empty_conditioning": ("CONDITIONING",),
+                "enabled" : ("BOOLEAN", {"default": True}),
+            }
+        }
+
+    FUNCTION = "exec"
+    RETURN_TYPES = ("CONDITIONING",)
+    CATEGORY = "conditioning"
+
+    def exec(self, conditioning, empty_conditioning, enabled):
+        if not enabled: return (conditioning,)
+        cond1 = deepcopy(conditioning)
+        empty_cond = empty_conditioning[0][0]
+        empty_tokens_no = empty_cond[0].shape[0]
+
+        for x in range(len(cond1)):
+            for y in range(len(cond1[x][0])):
+                for z in range(len(cond1[x][0][y])):
+                    if cond1[x][0][y][z].shape[0] == 2048:
+                        cond1[x][0][y][z][:768] = cond1[x][0][y][z][:768]/torch.norm(cond1[x][0][y][z][:768]) * torch.norm(empty_cond[0][z%empty_tokens_no][:768])
+                        cond1[x][0][y][z][768:] = cond1[x][0][y][z][768:]/torch.norm(cond1[x][0][y][z][768:]) * torch.norm(empty_cond[0][z%empty_tokens_no][768:])
+                    else:
+                        cond1[x][0][y][z] = cond1[x][0][y][z]/torch.norm(cond1[x][0][y][z]) * torch.norm(empty_cond[0][z%empty_tokens_no])
+        return (cond1,)
+    
 NODE_CLASS_MAPPINGS = {
     "CLIP Vector Sculptor text encode": vector_sculptor_node,
+    "Conditioning (Slerp)": average_keep_mag_node,
+    "Conditioning normalize magnitude to empty": norm_mag_node,
 }
