@@ -8,6 +8,8 @@ The nodes:
 
 ## Vector sculptor text encode:
 
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/06c556f0-537b-4acb-84bf-e0d702c085d0)
+
 Does what I described above.
 
 - Sculptor Intensity: How strong the effect will be. If the direction is not reversed I would say that up to 3 you will keep the overall meaning of your prompt. If reversed then don't go above one or face (enjoy?) randomness.
@@ -18,6 +20,8 @@ Does what I described above.
 
 ## Conditioning (Slerp):
 
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/36830dc8-47bc-4cd5-abd9-dc9b799fa70f)
+
 Since we are thinking with angles, doing weighted averages might be the reason why things feels so "dilute":
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/89a6d968-717c-492e-a9b1-b360e54d1504)
@@ -25,6 +29,8 @@ Since we are thinking with angles, doing weighted averages might be the reason w
 We're losing magnitude.
 
 ## "Conditioning normalize magnitude to empty:
+
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/57b9bbc4-7581-4fd8-bce3-b1c0d342a42b)
 
 Makes the overall intensity of the conditioning to the one of an empty cond. I have no idea if this is an actually good idea. It tends to give more balanced images regarding the colors and contrasts but also gave me more molten people.
 
@@ -34,7 +40,6 @@ If using SDXL the values are worked separately for clip_g and clip_l
 # Examples (same noise seed, euler/20 steps):
 
 ### Going towards similar vectors:
-
 
 ![00859UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/c2fb0adf-0fcb-4cab-9162-fb8a5859173b)
 
