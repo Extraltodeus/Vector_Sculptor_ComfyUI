@@ -16,7 +16,7 @@ Does what I described above.
 - Sculptor reversed:
   - off: goes towards the nearest vectors. This will make your generated images different in a generally good way. It can also reinforce the meaning of some words or make the images more colorful. Recommended intensity is above 1. **This direction is more interesting if you aim towards artistic creations.**
   - on: goes away from these nearest vectors. This might make the images sharper somehow or more precise with a low intensity but tends to have a more random effect in general. Recommended intensity is 1 and below. **This direction is more interesting if you aim towards realistic creations.**
-- Token normalization: reworks the magnitude of each vectors. I recommand either "none" which leaves things by default or "mean" so to set every token's importance to their overall mean value. "set at 1" will set them all at 1 and I have no idea if this is a good idea. "mean of all tokens" will take the mean value of EVERY vectors within the pre-cond weights and is probably a bad idea but why not.
+- Token normalization: reworks the magnitude of each vectors. I recommand either "none" which leaves things by default or "mean" so to set every token's importance to their overall mean value. "set at 1" will set them all at 1 and I have no idea if this is a good idea. "mean of all tokens" will take the mean value of EVERY vectors within the pre-cond weights and is probably a bad idea but also why not.
 
 ## Conditioning (Slerp):
 
