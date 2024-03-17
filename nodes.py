@@ -65,7 +65,7 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
     final_score = get_single_cosine_score(initial_weight,concurrent_weights) * sculptor_multiplier
 
     if sculptor_method == "backward":
-        initial_weight = initial_weight + concurrent_weights * final_score
+        initial_weight = initial_weight + concurrent_weights * final_score * 100
     elif sculptor_method == "forward":
         initial_weight = initial_weight - concurrent_weights * final_score
         
@@ -139,7 +139,7 @@ class vector_sculptor_node:
             "required": {
                 "clip": ("CLIP", ),
                 "text": ("STRING", {"multiline": True}),
-                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 100, "step": 0.1}),
+                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 10, "step": 0.1}),
                 "sculptor_method" : (["forward","backward","maximum_absolute"],),
                 "token_normalization": (["none", "mean", "set at 1", "default * attention", "mean * attention", "set at attention", "mean of all tokens"],),
             }
