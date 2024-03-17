@@ -75,21 +75,13 @@ prompt is: "dark enchanted forest with colorful glowing lights, digital painting
 
 Default:
 
-![03371UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0bb67f1f-f8fb-4725-b32e-134f7061b4ae)
+![03683UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f88f769e-d6a5-4c7a-b799-067798d26908)
 
 <sub>_Bleh..._</sub>
 
-(The settings are written in the images)
-
 ### Forward
 
-![03374UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/5d434870-e8d8-4aeb-811c-df69311450bb)
-
-![03375UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/acc419bb-004d-4795-bd5f-cd5ef75862af)
-
-![03376UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f38313bc-8827-458d-a7e8-dfcc8e1dc54a)
-
-![03377UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e506c276-1f1d-4c08-9ce9-a1e23a02bc57)
+![03688UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0923d651-c002-4e42-ae09-2ba189e9d864)
 
 <sub>_Did I just Midjourney SDXL???_</sub>
 
@@ -97,15 +89,8 @@ Default:
 
 ### Backward
 
-![03390UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e156c495-1358-498a-b37e-ac90f68941c8)
+![03687UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1459ddd4-fe00-48dc-9aaf-6e8a78d567e6)
 
-![03391UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/8477e529-603f-4751-9bd3-09ac359000f8)
-
-![03393UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/a31b7869-b62c-4cc8-81cb-f027f0cb19b6)
-
-![03394UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0da64f0c-2409-461c-8ec9-c005463f1678)
-
-![03396UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f1c32db6-61ba-46c6-addf-ef974ebb73d2)
 
 Maximum absolute didn't do well this time:
 
