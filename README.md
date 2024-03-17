@@ -4,7 +4,7 @@ It gathers similar pre-cond vectors for as long as the cosine similarity score d
 
 The nodes:
 
-![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e1d1a56b-d383-43e3-ac6f-59cc27cadd8f)
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1515fdd9-2aaf-45ec-990a-1d9ab15e9592)
 
 ## Vector sculptor text encode:
 
@@ -23,11 +23,13 @@ If the intensity is set at 0 the token's normalization is still into effect. Set
 
 Both directions offer valid variations no matter the subject.
 
-## Conditioning (Slerp):
+## Conditioning (Slerp) and Conditioning (Average keep magnitude):
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/36830dc8-47bc-4cd5-abd9-dc9b799fa70f)
 
 Since we are working with vectors, doing weighted averages might be the reason why things might feel "dilute" sometimes:
+
+"Conditioning (Average keep magnitude)" is a cheap slerp which does a weighted average with the conditionings and their magnitudes.
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/89a6d968-717c-492e-a9b1-b360e54d1504)
 
