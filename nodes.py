@@ -139,7 +139,7 @@ class vector_sculptor_node:
             "required": {
                 "clip": ("CLIP", ),
                 "text": ("STRING", {"multiline": True}),
-                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 10, "step": 0.1}),
+                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 100, "step": 0.1}),
                 "sculptor_method" : (["forward","backward","maximum_absolute"],),
                 "token_normalization": (["none", "mean", "set at 1", "default * attention", "mean * attention", "set at attention", "mean of all tokens"],),
             }
