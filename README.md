@@ -42,34 +42,17 @@ Makes the overall intensity of the conditioning to the one of an empty cond. I h
 If using SDXL the values are worked separately for clip_g and clip_l
 
 
-# Examples (same noise seed, euler/20 steps):
+# Examples (top row is backward, bottom is forward):
 
-### Going towards similar vectors:
+![part_1](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1910b63d-cae2-494b-aed8-5c667b2ffa98)
 
-![00859UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/c2fb0adf-0fcb-4cab-9162-fb8a5859173b)
+![part_2](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/cde69c76-61f1-43a4-a68d-fd05435216a9)
 
-"a plate with a few bananas":
+![part_3](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/208f152d-041d-45ec-9922-d17bbe3162b4)
 
-![01027UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/13c845e3-cf48-48b7-81b8-f478a8099407)
-
-<sub>Above 7 it would become way too random.</sub>
-
-### Going away from similar vectors:
-
-
-![00983UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/31bdd670-705d-4c82-a65e-0ca0619e8438)
-
-"a plate with a few bananas":
-
-![01066UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/cd731651-c802-46c4-b5a6-eae9c9a2879b)
-
-<sub>There is slightly less clutter</sub>
-
-### Maximum absolute:
-
-![03184UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/cdc50ef9-d427-4cd1-b945-33f7f91eef4b)
 
 # Example with SDXL:
+
 
 prompt is: "dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
 
