@@ -6,6 +6,15 @@ The nodes:
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1515fdd9-2aaf-45ec-990a-1d9ab15e9592)
 
+
+From Backward 5 to forward 1.5 "average keep magnitude" up until the middle and slerp the way back:
+
+
+
+https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/231b83d7-7b86-481f-9da5-2373513c2cd5
+
+
+
 ## Vector sculptor text encode:
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/295a4170-8a59-4a62-ae11-7dac516f9a3c)
