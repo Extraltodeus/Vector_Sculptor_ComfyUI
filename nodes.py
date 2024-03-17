@@ -43,7 +43,7 @@ def refine_token_weight(token_id, all_weights, subtract_difference, sculptor_mul
     del s[-1]
     del tmp_weights[-1]
 
-    if len(s) <= 1: return initial_weight.cpu(), 0
+    if len(s) < 1: return initial_weight.cpu(), 0
 
     concurrent_weights = torch.sum(torch.stack([t * s[i]**2 for i, t in enumerate(tmp_weights)]), dim=0)
     final_score = get_single_cosine_score(initial_weight,concurrent_weights) * sculptor_multiplier
