@@ -96,13 +96,6 @@ Maximum absolute didn't do well this time:
 ![03397UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0d650597-5b3d-461e-8cf6-b6c60b021606)
 
 
-
-### intensity at 10 becomes total nonsense whatever the direction:
-
-![00993UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f54315f8-08d9-49a2-bfa7-9fc967697434)
-
-![00991UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/514d9fa4-032b-4f5a-b5b8-8d0f812d9391)
-
 ## Note:
 
 I make these nodes to try to understand things deeper. My maths can sometimes be wrong sometimes. Everything I do is self-taught with an overly top-to-bottom approach.
