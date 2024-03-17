@@ -79,7 +79,9 @@ Default:
 
 <sub>_Bleh..._</sub>
 
-The settings are written in the images:
+(The settings are written in the images)
+
+### Forward
 
 ![03374UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/5d434870-e8d8-4aeb-811c-df69311450bb)
 
@@ -90,6 +92,10 @@ The settings are written in the images:
 ![03377UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e506c276-1f1d-4c08-9ce9-a1e23a02bc57)
 
 <sub>_Did I just Midjourney SDXL???_</sub>
+
+---
+
+### Backward
 
 ![03390UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e156c495-1358-498a-b37e-ac90f68941c8)
 
