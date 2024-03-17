@@ -85,7 +85,6 @@ Default:
 
 <sub>_Did I just Midjourney SDXL???_</sub>
 
----
 
 ### Backward
 
