@@ -63,8 +63,10 @@ If using SDXL the values are worked separately for clip_g and clip_l
 
 ### intensity at 10 becomes total nonsense whatever the direction:
 
-
 ![00993UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f54315f8-08d9-49a2-bfa7-9fc967697434)
 
 ![00991UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/514d9fa4-032b-4f5a-b5b8-8d0f812d9391)
 
+## Note:
+
+I make these nodes to try to understand things deeper. My maths can sometimes be wrong sometimes. Everything I do is self-taught with an overly top-to-bottom approach.
