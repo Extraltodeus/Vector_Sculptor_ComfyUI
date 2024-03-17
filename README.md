@@ -32,7 +32,7 @@ If the intensity is set at 0 the token's normalization is still into effect. Set
 
 Both directions offer valid variations no matter the subject.
 
-For general use I recommand "forward" at 0.3 which is basically playing it safe.
+For general use I recommand "forward" at 0.3 or "backward" at 0.5~1.
 
 ## Conditioning (Slerp) and Conditioning (Average keep magnitude):
 
