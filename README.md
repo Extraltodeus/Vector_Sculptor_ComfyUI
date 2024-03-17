@@ -32,9 +32,9 @@ If the intensity is set at 0 the token's normalization is still into effect. Set
 
 Both directions offer valid variations no matter the subject.
 
-For general use I recommand forward or backward at 0.5~1 for the positive prompt and to "stay in place" for the negative.
+For general use I recommand forward at 0.5 for the positive prompt and to "stay in place" for the negative.
 
-Overall normalizing the tokens magnitudes at their mean seems to have a positive effect too. Especially with the negative prompt which tends to lower my ratio of burned images.
+Normalizing the tokens magnitudes at their mean seems to have a positive effect too. Especially with the negative prompt which tends to lower my ratio of burned images.
 
 ## Conditioning (Slerp) and Conditioning (Average keep magnitude):
 
