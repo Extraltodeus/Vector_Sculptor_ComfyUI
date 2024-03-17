@@ -195,7 +195,7 @@ def slerp(high, low, val):
     res = (torch.sin((1.0-val)*omega)/so).unsqueeze(1)*low + (torch.sin(val*omega)/so).unsqueeze(1) * high
     return res.reshape(dims)
     
-class average_keep_mag_node:
+class slerp_cond_node:
     def __init__(self):
         pass
     
@@ -226,6 +226,37 @@ class average_keep_mag_node:
             cond1 = add_to_first_if_shorter(cond1,cond2,x)
         return (cond1,)
 
+class average_keep_mag_node:
+    def __init__(self):
+        pass
+    
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "conditioning_to": ("CONDITIONING",),
+                "conditioning_from": ("CONDITIONING",),
+                "conditioning_to_strength": ("FLOAT", {"default": 0.5, "min": 0, "max": 1, "step": 0.01}),
+            }
+        }
+
+    FUNCTION = "exec"
+    RETURN_TYPES = ("CONDITIONING",)
+    CATEGORY = "conditioning"
+
+    def exec(self, conditioning_to, conditioning_from,conditioning_to_strength):
+        cond1 = deepcopy(conditioning_to)
+        cond2 = deepcopy(conditioning_from)
+        for x in range(min(len(cond1),len(cond2))):
+            min_dim = min(cond1[x][0].shape[1],cond2[x][0].shape[1])
+            if cond1[x][0].shape[2] == 2048:
+                cond1[x][0][:,:min_dim,:768] = average_and_keep_mag(cond1[x][0][:,:min_dim,:768], cond2[x][0][:,:min_dim,:768], conditioning_to_strength)
+                cond1[x][0][:,:min_dim,768:] = average_and_keep_mag(cond1[x][0][:,:min_dim,768:], cond2[x][0][:,:min_dim,768:], conditioning_to_strength)
+            else:
+                cond1[x][0][:,:min_dim,...] = average_and_keep_mag(cond1[x][0][:,:min_dim,...], cond2[x][0][:,:min_dim,...], conditioning_to_strength)
+            cond1 = add_to_first_if_shorter(cond1,cond2,x)
+        return (cond1,)
+    
 class norm_mag_node:
     def __init__(self):
         pass
@@ -262,6 +293,7 @@ class norm_mag_node:
     
 NODE_CLASS_MAPPINGS = {
     "CLIP Vector Sculptor text encode": vector_sculptor_node,
-    "Conditioning (Slerp)": average_keep_mag_node,
+    "Conditioning (Slerp)": slerp_cond_node,
+    "Conditioning (Average keep magnitude)": average_keep_mag_node,
     "Conditioning normalize magnitude to empty": norm_mag_node,
 }
