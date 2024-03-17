@@ -65,6 +65,10 @@ If using SDXL the values are worked separately for clip_g and clip_l
 
 <sub>There is slightly less clutter</sub>
 
+### Maximum absolute:
+
+![03184UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/cdc50ef9-d427-4cd1-b945-33f7f91eef4b)
+
 
 ### intensity at 10 becomes total nonsense whatever the direction:
 
