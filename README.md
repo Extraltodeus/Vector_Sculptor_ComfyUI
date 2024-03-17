@@ -24,7 +24,7 @@ Since we are thinking with angles, doing weighted averages might be the reason w
 
 We're losing magnitude.
 
-### "Conditioning normalize magnitude to empty:
+## "Conditioning normalize magnitude to empty:
 
 Makes the overall intensity of the conditioning to the one of an empty cond. I have no idea if this is an actually good idea. It tends to give more balanced images regarding the colors and contrasts but also gave me more molten people.
 
