@@ -4,11 +4,11 @@ It gathers similar pre-cond vectors for as long as the cosine similarity score d
 
 The nodes:
 
-![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/8939ce9e-a131-4e17-9e51-12c101b214af)
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e1d1a56b-d383-43e3-ac6f-59cc27cadd8f)
 
 ## Vector sculptor text encode:
 
-![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/06c556f0-537b-4acb-84bf-e0d702c085d0)
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/295a4170-8a59-4a62-ae11-7dac516f9a3c)
 
 Does what I described above.
 
