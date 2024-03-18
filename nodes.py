@@ -53,7 +53,7 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
     del s[-1]
     del tmp_weights[-1]
 
-    if len(s) < 1: return initial_weight.cpu(), 0
+    if len(s) <= 1: return initial_weight.cpu(), 0
 
     if sculptor_method == "maximum_absolute":
         concurrent_weights = torch.stack([ini_w/torch.norm(ini_w)]+[t/torch.norm(t) for i, t in enumerate(tmp_weights)])
