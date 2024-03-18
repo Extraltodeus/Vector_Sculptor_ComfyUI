@@ -66,33 +66,6 @@ If using SDXL the values are worked separately for clip_g and clip_l
 ![part_3](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/208f152d-041d-45ec-9922-d17bbe3162b4)
 
 
-# Example with SDXL:
-
-
-prompt is: "dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
-
-Default:
-
-![03683UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f88f769e-d6a5-4c7a-b799-067798d26908)
-
-<sub>_Bleh..._</sub>
-
-### Forward
-
-![03688UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0923d651-c002-4e42-ae09-2ba189e9d864)
-
-<sub>_Did I just Midjourney SDXL???_</sub>
-
-
-### Backward
-
-![03687UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1459ddd4-fe00-48dc-9aaf-6e8a78d567e6)
-
-
-Maximum absolute didn't do well this time:
-
-![03397UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/0d650597-5b3d-461e-8cf6-b6c60b021606)
-
 
 ## Note:
 
