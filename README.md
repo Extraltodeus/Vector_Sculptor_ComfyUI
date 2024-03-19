@@ -88,8 +88,7 @@ With a lower intensity the effect can still be seen without necessarily changing
 
 
 
-_"dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
-_
+_"dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"_
 
 ![01851UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/a3217e71-ef4e-482d-936a-522e1756c9ba)
 
