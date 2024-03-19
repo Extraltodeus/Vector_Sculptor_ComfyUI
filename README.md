@@ -61,11 +61,11 @@ If using SDXL the values are worked separately for clip_g and clip_l
 
 ## SD 1.x
 
-![00608UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/438621c6-e878-4dc0-8e66-d2f0d95261ea)
+![00545UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/10a3a4b7-f291-4927-be19-2f6df3d0a6a8)
 
 ![00724UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f576deac-b90f-431f-b83a-2ff391bed15f)
 
-![00545UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/10a3a4b7-f291-4927-be19-2f6df3d0a6a8)
+![00608UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/438621c6-e878-4dc0-8e66-d2f0d95261ea)
 
 ## SDXL:
 
