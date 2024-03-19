@@ -76,7 +76,7 @@ If using SDXL the values are worked separately for clip_g and clip_l
 ![01816UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/9453d4fc-15d7-4554-ba12-b50b810ebceb)
 
 
-At 1 it seems to cure the "always the same face" effect:
+Forward at 0.5~1.0 it seems to cure the "always the same face" effect:
 
 ![01324UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/5a72f150-2b04-401e-981d-e68330f6bcdf)
 
