@@ -75,15 +75,6 @@ If using SDXL the values are worked separately for clip_g and clip_l
 
 ![01816UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/9453d4fc-15d7-4554-ba12-b50b810ebceb)
 
-_"dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
-_
-![01851UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/a3217e71-ef4e-482d-936a-522e1756c9ba)
-
-Too much forward will overreach your general meaning and become more unpredictable:
-
-![01823UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/7a45f3fe-c5d5-4036-aa1f-336e85629c0e)
-
-![01835UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e22d60be-98e8-4f45-855f-ef1cc4369f2b)
 
 At 1 it seems to cure the "always the same face" effect:
 
@@ -94,6 +85,26 @@ With a lower intensity the effect can still be seen without necessarily changing
 ![01489UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e1b71f84-7175-4db0-af56-171391bf1489)
 
 ![01515UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/4f16dcf5-85b3-4b01-871d-1f7b5ffe29ce)
+
+
+
+_"dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
+_
+
+![01851UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/a3217e71-ef4e-482d-936a-522e1756c9ba)
+
+![01847UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/226f33eb-a908-4d54-b71f-52e3be2ed2b6)
+
+
+Too much forward will overreach your general meaning and become more unpredictable:
+
+![01823UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/7a45f3fe-c5d5-4036-aa1f-336e85629c0e)
+
+![01835UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e22d60be-98e8-4f45-855f-ef1cc4369f2b)
+
+
+![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/36bd7b2d-e667-4087-ac0b-eeda397dfb11)
+
 
 
 ## More on SD 1.5:
