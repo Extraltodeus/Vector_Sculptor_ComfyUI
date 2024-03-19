@@ -32,7 +32,7 @@ If the intensity is set at 0 the token's normalization is still into effect. Set
 
 Both directions offer valid variations no matter the subject.
 
-For general use I recommand backward at 0.5 for the positive prompt and to "stay in place" for the negative.
+For general use I recommand forward at 0.5 for the positive prompt and to "stay in place" for the negative.
 
 Normalizing the tokens magnitudes at their mean seems to have a positive effect too. Especially with the negative prompt which tends to lower my ratio of burned images.
 
