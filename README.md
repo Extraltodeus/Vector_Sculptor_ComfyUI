@@ -1,4 +1,4 @@
-The main node makes your conditioning go towards similar concepts so to enrich your composition or further away so to make it more precise.
+![01862UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/6d8ce31e-fb5f-4846-a806-7f851bc6e0f9)The main node makes your conditioning go towards similar concepts so to enrich your composition or further away so to make it more precise.
 
 It gathers similar pre-cond vectors for as long as the cosine similarity score diminishes. If it climbs back it stops. This allows to set a relative direction to similar concepts.
 
@@ -57,19 +57,48 @@ Makes the overall intensity of the conditioning to the one of an empty cond. I h
 If using SDXL the values are worked separately for clip_g and clip_l
 
 
-# Examples (top row is backward, bottom is forward):
+# Examples (same seed side by side):
 
-![part_1](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1910b63d-cae2-494b-aed8-5c667b2ffa98)
+## SD 1.x
 
-![part_2](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/cde69c76-61f1-43a4-a68d-fd05435216a9)
+![00608UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/438621c6-e878-4dc0-8e66-d2f0d95261ea)
 
-![part_3](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/208f152d-041d-45ec-9922-d17bbe3162b4)
+![00724UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/f576deac-b90f-431f-b83a-2ff391bed15f)
 
+
+
+## SDXL:
+
+![01785UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/9a47419a-b34a-489a-bb4d-0181cb966abf)
+
+![01816UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/9453d4fc-15d7-4554-ba12-b50b810ebceb)
+
+_"dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
+_
+![01851UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/a3217e71-ef4e-482d-936a-522e1756c9ba)
+
+Too much forward will overreach your general meaning and become more unpredictable:
+
+![01823UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/7a45f3fe-c5d5-4036-aa1f-336e85629c0e)
+
+![01835UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e22d60be-98e8-4f45-855f-ef1cc4369f2b)
+
+At 1 it seems to cure the "always the same face" effect:
+
+![01324UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/5a72f150-2b04-401e-981d-e68330f6bcdf)
+
+With a lower intensity the effect can still be seen without necessarily changing the composition:
+
+![01489UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e1b71f84-7175-4db0-af56-171391bf1489)
+
+![01515UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/4f16dcf5-85b3-4b01-871d-1f7b5ffe29ce)
 
 
 ## Note:
 
 I make these nodes to try to understand things deeper. My maths can sometimes be wrong sometimes. Everything I do is self-taught with an overly top-to-bottom approach.
+
+I feel that what I have done might also be done by tweaking the activation functions but I haven't got that far. Yet.
 
 Also kittens seems immune to this transformation and inherits little suits before turning into AI chaos.
 
