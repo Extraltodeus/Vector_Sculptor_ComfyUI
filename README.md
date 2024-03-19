@@ -21,7 +21,7 @@ https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/231b83d7
 
 Does what I described above.
 
-- **Sculptor Intensity**: How strong the effect will be. If the direction is not reversed I would say that up to 3 you will keep the overall meaning of your prompt. If reversed then don't go above 1~2.5 or face (enjoy?) randomness.
+- **Sculptor Intensity**: How strong the effect will be. Forward is best from 0 to 1 for photorealistic images anb 1 to 2 for more artistic purpose.
 - **Sculptor method**:
   - **forward**: Subtract the nearest vectors. Going above 1 might have adversarial effects.
   - **backward**: Add them instead.
