@@ -39,6 +39,7 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
     iter_num = 0
     s = []
     tmp_weights = []
+    
     ini_w = torch.clone(initial_weight)
 
     while previous_cos_score < cos_score:
@@ -60,7 +61,13 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
         initial_weight = maximum_absolute_values(concurrent_weights)
         initial_weight *= pre_mag / torch.norm(initial_weight)
         return initial_weight.cpu(), len(s)
-
+    elif sculptor_method == "add_minimum_absolute":
+        concurrent_weights = torch.stack([ini_w/torch.norm(ini_w)]+[t/torch.norm(t) for i, t in enumerate(tmp_weights)])
+        initial_weight_min = maximum_absolute_values(concurrent_weights, sculptor_method == "minimum_absolute")
+        initial_weight = ini_w + initial_weight_min * sculptor_multiplier
+        initial_weight *= pre_mag / torch.norm(initial_weight)
+        return initial_weight.cpu(), len(s)
+    
     concurrent_weights = torch.sum(torch.stack([t * s[i]**2 for i, t in enumerate(tmp_weights)]), dim=0)
     final_score = get_single_cosine_score(initial_weight,concurrent_weights) * sculptor_multiplier
 
@@ -68,8 +75,8 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
         initial_weight = initial_weight + concurrent_weights * final_score
     elif sculptor_method == "forward":
         initial_weight = initial_weight - concurrent_weights * final_score
-        
-    initial_weight *= pre_mag / torch.norm(initial_weight)
+
+    initial_weight = initial_weight * pre_mag / torch.norm(initial_weight)
     return initial_weight.cpu(), len(s)
 
 def vector_sculptor_tokens(clip, text, sculptor_method, token_normalization, sculptor_multiplier):
@@ -83,6 +90,10 @@ def vector_sculptor_tokens(clip, text, sculptor_method, token_normalization, scu
         mean_mag = 0
         mean_mag_count = 0
         to_mean_coords = []
+        if k.lower() == "g":
+            actual_multiplier = sculptor_multiplier * 4 / 1.5 #2048 to 768, this gives the same effect intensity on both CLIP
+        else:
+            actual_multiplier = sculptor_multiplier
         clip_model = getattr(clip.cond_stage_model, f"clip_{k}", None)
         all_weights = torch.clone(clip_model.transformer.text_model.embeddings.token_embedding.weight).to(device=model_management.get_torch_device())
         if token_normalization == "mean of all tokens":
@@ -93,7 +104,7 @@ def vector_sculptor_tokens(clip, text, sculptor_method, token_normalization, scu
                 token_id, attn_weight = initial_tokens[k][x][y]
                 if token_id not in ignored_token_ids and sculptor_multiplier > 0:
                     total_candidates += 1
-                    new_vector, n_found = refine_token_weight(token_id,all_weights, sculptor_method, sculptor_multiplier)
+                    new_vector, n_found = refine_token_weight(token_id,all_weights, sculptor_method, actual_multiplier)
                     if n_found > 0:
                         total_found += n_found
                         total_replaced += 1
@@ -139,15 +150,15 @@ class vector_sculptor_node:
             "required": {
                 "clip": ("CLIP", ),
                 "text": ("STRING", {"multiline": True}),
-                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 10, "step": 0.1}),
-                "sculptor_method" : (["forward","backward","maximum_absolute"],),
+                "sculptor_intensity": ("FLOAT", {"default": 1, "min": 0, "max": 10, "step": 0.01}),
+                "sculptor_method" : (["forward","backward","maximum_absolute","add_minimum_absolute"],),
                 "token_normalization": (["none", "mean", "set at 1", "default * attention", "mean * attention", "set at attention", "mean of all tokens"],),
             }
         }
 
     FUNCTION = "exec"
     RETURN_TYPES = ("CONDITIONING","STRING",)
-    RETURN_NAMES = ("Conditioning","Parameters",)
+    RETURN_NAMES = ("Conditioning","Parameters_as_string",)
     CATEGORY = "conditioning"
 
     def exec(self, clip, text, sculptor_intensity, sculptor_method, token_normalization):
@@ -157,7 +168,7 @@ class vector_sculptor_node:
         if sculptor_intensity == 0 and token_normalization == "none":
             parameters_as_string = "Disabled"
         else:
-            parameters_as_string = f"Intensity: {sculptor_intensity}\nMethod: {sculptor_method}\nNormalization: {token_normalization}"
+            parameters_as_string = f"Intensity: {round(sculptor_intensity,2)}\nMethod: {sculptor_method}\nNormalization: {token_normalization}"
         return (conditioning,parameters_as_string,)
 
 def add_to_first_if_shorter(conditioning1,conditioning2,x=0):
