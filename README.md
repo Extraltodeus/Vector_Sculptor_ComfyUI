@@ -71,6 +71,8 @@ If using SDXL the values are worked separately for clip_g and clip_l
 
 ![01785UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/9a47419a-b34a-489a-bb4d-0181cb966abf)
 
+![01796UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/2bb08802-8e26-4348-83f0-1132c875fdfb)
+
 ![01816UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/9453d4fc-15d7-4554-ba12-b50b810ebceb)
 
 _"dark enchanted forest with colorful glowing lights, digital painting, night, black amoled wallpaper, wintery fog, fantasy"
@@ -92,6 +94,15 @@ With a lower intensity the effect can still be seen without necessarily changing
 ![01489UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/e1b71f84-7175-4db0-af56-171391bf1489)
 
 ![01515UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/4f16dcf5-85b3-4b01-871d-1f7b5ffe29ce)
+
+
+## More on SD 1.5:
+
+![part_1](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/25936e12-3d0d-406e-a372-2fc21af0f3e5)
+
+![part_2](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/db56a2a8-8048-4e46-931e-ffd68c1ebd29)
+
+![part_3](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/6d1f76ea-72ea-48a8-8d56-ce929a939cd4)
 
 
 ## Note:
