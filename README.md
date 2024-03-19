@@ -1,4 +1,4 @@
-![01862UI_00001_](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/6d8ce31e-fb5f-4846-a806-7f851bc6e0f9)The main node makes your conditioning go towards similar concepts so to enrich your composition or further away so to make it more precise.
+The main node makes your conditioning go towards similar concepts so to enrich your composition or further away so to make it more precise.
 
 It gathers similar pre-cond vectors for as long as the cosine similarity score diminishes. If it climbs back it stops. This allows to set a relative direction to similar concepts.
 
