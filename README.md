@@ -2,7 +2,7 @@ The main node makes your conditioning go towards similar concepts so to enrich y
 
 It gathers similar pre-cond vectors for as long as the cosine similarity score diminishes. If it climbs back it stops. This allows to set a relative direction to similar concepts.
 
-There are examples at the end but you can also check this [imgur album](https://imgur.com/a/WvPd81Y) which demonstrates the capability of improving variety.
+There are examples at the end but [you can also check this imgur album](https://imgur.com/a/WvPd81Y) which demonstrates the capability of improving variety.
 
 The nodes:
 
