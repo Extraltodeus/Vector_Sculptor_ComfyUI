@@ -2,6 +2,8 @@ The main node makes your conditioning go towards similar concepts so to enrich y
 
 It gathers similar pre-cond vectors for as long as the cosine similarity score diminishes. If it climbs back it stops. This allows to set a relative direction to similar concepts.
 
+There are examples at the end but you can also check this [imgur album](https://imgur.com/a/WvPd81Y) which demonstrates the capability of improving variety.
+
 The nodes:
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1515fdd9-2aaf-45ec-990a-1d9ab15e9592)
@@ -117,7 +119,7 @@ Too much forward will overreach your general meaning and become more unpredictab
 
 ## Note:
 
-I make these nodes to try to understand things deeper. My maths can sometimes be wrong sometimes. Everything I do is self-taught with an overly top-to-bottom approach.
+I make these nodes to try to understand things deeper. My maths can sometimes be wrong. Everything I do is self-taught with an overly top-to-bottom approach.
 
 I feel that what I have done might also be done by tweaking the activation functions but I haven't got that far. Yet.
 
