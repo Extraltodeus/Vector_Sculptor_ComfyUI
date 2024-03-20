@@ -301,10 +301,36 @@ class norm_mag_node:
                     else:
                         cond1[x][0][y][z] = cond1[x][0][y][z]/torch.norm(cond1[x][0][y][z]) * torch.norm(empty_cond[0][z%empty_tokens_no])
         return (cond1,)
+
+class conditioning_merge_clip_g_l:
+    def __init__(self):
+        pass
+    
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "cond_clip_l": ("CONDITIONING",),
+                "cond_clip_g": ("CONDITIONING",),
+            }
+        }
+
+    FUNCTION = "exec"
+    RETURN_TYPES = ("CONDITIONING",)
+    CATEGORY = "conditioning"
+
+    def exec(self, cond_clip_l, cond_clip_g):
+        conditioning_l = deepcopy(cond_clip_l)
+        conditioning_g = deepcopy(cond_clip_g)
+        for x in range(min(len(conditioning_g),len(conditioning_l))):
+            min_dim = min(conditioning_g[x][0].shape[1],conditioning_l[x][0].shape[1])
+            conditioning_g[x][0][:,:min_dim,:768] = conditioning_l[x][0][:,:min_dim,:768]
+        return (conditioning_g,)
     
 NODE_CLASS_MAPPINGS = {
     "CLIP Vector Sculptor text encode": vector_sculptor_node,
     "Conditioning (Slerp)": slerp_cond_node,
     "Conditioning (Average keep magnitude)": average_keep_mag_node,
     "Conditioning normalize magnitude to empty": norm_mag_node,
+    "Conditioning SDXL merge clip_g / clip_l": conditioning_merge_clip_g_l,
 }
