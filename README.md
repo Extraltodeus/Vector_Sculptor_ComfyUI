@@ -121,6 +121,8 @@ Too much forward will overreach your general meaning and become more unpredictab
 
 I make these nodes to try to understand things deeper. My maths can sometimes be wrong. Everything I do is self-taught with an overly top-to-bottom approach.
 
+Some things like the fact that I'm not turning the cosine similarity score into a linear value might look like an oversight but doing so tends to diminish the effect of the node too strongly and is therefore a deliberate choice.
+
 I feel that what I have done might also be done by tweaking the activation functions but I haven't got that far. Yet.
 
 Also kittens seems immune to this transformation and inherits little suits before turning into AI chaos.
