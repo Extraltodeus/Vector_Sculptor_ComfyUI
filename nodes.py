@@ -110,8 +110,7 @@ def vector_sculptor_tokens(clip, text, sculptor_method, token_normalization, scu
                         total_replaced += 1
                 else:
                     new_vector = all_weights[token_id]
-                # if y not in [0,76] and token_normalization != "none":
-                if y not in [0] and token_normalization != "none":
+                if token_normalization != "none" and y != 0 and token_id != 2:
                     if token_normalization == "mean" or token_normalization == "mean * attention":
                         mean_mag += torch.norm(new_vector).item()
                         mean_mag_count += 1
