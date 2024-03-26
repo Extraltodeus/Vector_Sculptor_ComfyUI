@@ -118,6 +118,12 @@ Too much forward will overreach your general meaning and become more unpredictab
 
 ![part_3](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/6d1f76ea-72ea-48a8-8d56-ce929a939cd4)
 
+## My examples are all workflows.
+
+If you want to try them you will need a few of my random useful nodes.
+
+You can find all of them [here](https://github.com/Extraltodeus/CustomComfyUINodes_random_stash/blob/main/image_PIL_text.py), [here](https://github.com/Extraltodeus/CustomComfyUINodes_random_stash/blob/main/image_zoom.py) and [here](https://github.com/Extraltodeus/CustomComfyUINodes_random_stash/blob/main/image_to_PIL.py)
+
 
 ## Note:
 
