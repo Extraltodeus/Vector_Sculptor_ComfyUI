@@ -4,6 +4,8 @@ It gathers similar pre-cond vectors for as long as the cosine similarity score d
 
 There are examples at the end but [you can also check this imgur album](https://imgur.com/a/WvPd81Y) which demonstrates the capability of improving variety.
 
+[MNeMoNiCuZ](https://github.com/MNeMoNiCuZ) also shared his [tests](https://huggingface.co/datasets/mnemic/VectorSculptorResults/blob/main/README.md)
+
 The nodes:
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/1515fdd9-2aaf-45ec-990a-1d9ab15e9592)
