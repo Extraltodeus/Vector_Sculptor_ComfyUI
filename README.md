@@ -110,7 +110,9 @@ Too much forward will overreach your general meaning and become more unpredictab
 
 ![image](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/36bd7b2d-e667-4087-ac0b-eeda397dfb11)
 
+## By [MNeMoNiCuZ](https://github.com/MNeMoNiCuZ) also [link to his 882 results](https://huggingface.co/datasets/mnemic/VectorSculptorResults/tree/main)
 
+![2024-03-28-18_31_19 - basic 001](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/5f8ad7e1-4d91-4e91-81a9-9ac5800ded51)
 
 ## More on SD 1.5:
 
@@ -125,7 +127,6 @@ Too much forward will overreach your general meaning and become more unpredictab
 If you want to try them you will need a few of my random useful nodes.
 
 You can find all of them [here](https://github.com/Extraltodeus/CustomComfyUINodes_random_stash/blob/main/image_PIL_text.py), [here](https://github.com/Extraltodeus/CustomComfyUINodes_random_stash/blob/main/image_zoom.py) and [here](https://github.com/Extraltodeus/CustomComfyUINodes_random_stash/blob/main/image_to_PIL.py)
-
 
 ## Note:
 
