@@ -138,3 +138,9 @@ Also kittens seems immune to this transformation and inherits little suits befor
 
 ![kit](https://github.com/Extraltodeus/Vector_Sculptor_ComfyUI/assets/15731540/34b4f33d-1272-471c-9fc0-4dd8c0358526)
 
+
+# Pro tip:
+
+Did you know that my first activity is to write creative model merging functions?
+
+While the code is too much of a mess to be shared, I do expose and share my models. You can find them in this [gallery](https://github.com/Extraltodeus/shared_models_galleries)! 😁
