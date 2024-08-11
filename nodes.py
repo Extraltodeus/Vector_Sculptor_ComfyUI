@@ -120,9 +120,11 @@ def vector_sculptor_tokens(clip, text, sculptor_method, token_normalization, scu
                     elif token_normalization == "default * attention":
                         new_vector *= attn_weight
                     elif token_normalization == "set at attention":
-                        new_vector /= torch.norm(new_vector) * attn_weight
+                        new_vector = new_vector / torch.norm(new_vector) * attn_weight
+                        # new_vector /= torch.norm(new_vector) * attn_weight
                     elif token_normalization == "mean of all tokens":
-                        new_vector /= torch.norm(new_vector) * mean_mag_all_weights
+                        new_vector = new_vector / torch.norm(new_vector) * mean_mag_all_weights
+                        # new_vector /= torch.norm(new_vector) * mean_mag_all_weights
                 initial_tokens[k][x][y] = (new_vector, attn_weight)
         if (token_normalization == "mean" or token_normalization == "mean * attention") and mean_mag_count > 0:
             mean_mag /= mean_mag_count
