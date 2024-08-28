@@ -59,13 +59,13 @@ def refine_token_weight(token_id, all_weights, sculptor_method, sculptor_multipl
     if sculptor_method == "maximum_absolute":
         concurrent_weights = torch.stack([ini_w/torch.norm(ini_w)]+[t/torch.norm(t) for i, t in enumerate(tmp_weights)])
         initial_weight = maximum_absolute_values(concurrent_weights)
-        initial_weight *= pre_mag / torch.norm(initial_weight)
+        initial_weight = initial_weight * pre_mag / torch.norm(initial_weight)
         return initial_weight.cpu(), len(s)
     elif sculptor_method == "add_minimum_absolute":
         concurrent_weights = torch.stack([ini_w/torch.norm(ini_w)]+[t/torch.norm(t) for i, t in enumerate(tmp_weights)])
         initial_weight_min = maximum_absolute_values(concurrent_weights, sculptor_method == "minimum_absolute")
         initial_weight = ini_w + initial_weight_min * sculptor_multiplier
-        initial_weight *= pre_mag / torch.norm(initial_weight)
+        initial_weight = initial_weight * pre_mag / torch.norm(initial_weight)
         return initial_weight.cpu(), len(s)
     
     concurrent_weights = torch.sum(torch.stack([t * s[i]**2 for i, t in enumerate(tmp_weights)]), dim=0)
